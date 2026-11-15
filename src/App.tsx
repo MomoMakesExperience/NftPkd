@@ -203,7 +203,7 @@ export default class App extends React.Component<any, any> {
     this.ensureAudio();
     this.setState({ musicStarted: true, musicOn: true });
     if (CONFIG.musicUrl) {
-      try { this.audioEl = new Audio(CONFIG.musicUrl); this.audioEl.loop = true; this.audioEl.volume = 0.5; const p = this.audioEl.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+      try { this.audioEl = new Audio(CONFIG.musicUrl); this.audioEl.loop = true; this.audioEl.volume = 1; const p = this.audioEl.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
       return;
     }
     if (!this.ctx) return;
