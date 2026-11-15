@@ -731,8 +731,9 @@ export default class App extends React.Component<any, any> {
                 </div>
                 {v.quizOn && (
                   <div className="flip-wrap reveal d1">
+                    <div className="card-sway">
                     <div className={'flip ' + v.flipClass}>
-                      <div className="card-face card-front" style={st('background: linear-gradient(160deg, #FFFFFF, #E6F2FF); color: #0B2A55; box-shadow: 0 6px 0 #8CC8FF, 0 30px 60px rgba(0,0,0,.4)')}>
+                      <div className="card-face card-front" style={st('background: linear-gradient(150deg, #FFFFFF 0%, #FFE3F1 45%, #D6ECFF 100%); color: #0B2A55; box-shadow: inset 0 2px 0 rgba(255,255,255,.95), inset 0 -10px 24px rgba(255,111,181,.18), 0 4px 0 #FFC2DF, 0 8px 0 #FF8CC6, 0 12px 0 #C2316F, 0 18px 24px rgba(194,49,111,.35), 0 40px 70px rgba(0,0,0,.45)')}>
                         <span className="kicker" style={{ color: '#1E90FF' }}>Question {v.qNum} / {v.qTotal}</span>
                         <h2 style={st('margin: 0; font-weight: 700; font-size: 25px; line-height: 1.25')}>{v.q.q}</h2>
                         <div style={st('width: 100%; display: flex; flex-direction: column; gap: 12px; margin-top: 4px')}>
@@ -741,16 +742,17 @@ export default class App extends React.Component<any, any> {
                           ))}
                         </div>
                       </div>
-                      <div className="card-face card-back" style={st('background: linear-gradient(160deg, #1E90FF, #0E5FB8); color: #FFFFFF; box-shadow: 0 6px 0 #0B4C99, 0 30px 60px rgba(0,0,0,.4)')}>
+                      <div className="card-face card-back" style={st('background: linear-gradient(150deg, #FF6FB5 0%, #9B5CFF 50%, #1E90FF 100%); color: #FFFFFF; box-shadow: inset 0 2px 0 rgba(255,255,255,.45), inset 0 -10px 24px rgba(11,42,85,.25), 0 4px 0 #7A4BE0, 0 8px 0 #5B2FC0, 0 12px 0 #0B4C99, 0 18px 24px rgba(91,47,192,.4), 0 40px 70px rgba(0,0,0,.45)')}>
                         <span className="kicker" style={{ color: '#FFE3F1' }}>Ta réponse : {v.pickedLabel}</span>
                         <p style={st('margin: 0; font-weight: 600; font-size: 23px; line-height: 1.4')}>{v.reaction}</p>
                         <button className="next-link" onClick={v.nextQuestion}>{v.nextLabel} ›</button>
                       </div>
                     </div>
+                    </div>
                   </div>
                 )}
                 {v.inviteOn && (
-                  <div className="paper-in" style={st('border-radius: 22px; padding: 30px 22px; background: #FFF8F2; color: #2B1A3A; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; box-shadow: 0 6px 0 #F2C6DB, 0 30px 60px rgba(0,0,0,.45)')}>
+                  <div className="paper-in" style={st('border-radius: 34px; padding: 32px 24px; background: linear-gradient(160deg, #FFF8F2 0%, #FFE3F1 55%, #E6F2FF 100%); color: #2B1A3A; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; box-shadow: inset 0 2px 0 rgba(255,255,255,.95), 0 4px 0 #FFC2DF, 0 8px 0 #FF8CC6, 0 12px 0 #C2316F, 0 18px 24px rgba(194,49,111,.35), 0 40px 70px rgba(0,0,0,.45)')}>
                     <h2 style={st('margin: 0; font-weight: 800; font-size: 32px; line-height: 1.15; color: #E4579C')}>{v.invitation.title}</h2>
                     <p style={st('margin: 0; font-size: 17px; font-weight: 500; line-height: 1.5')}>{v.invitation.text}</p>
                     <div style={st('width: 100%; display: flex; flex-direction: column; margin: 4px 0')}>
