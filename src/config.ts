@@ -45,7 +45,9 @@ export const CONFIG: any = {
     { file: 'photo-03.jpg', orientation: 'portrait', caption: 'Nos initiales écrites sur ta main… et gravées dans mon cœur.', src: '/images/couple/photo-03.jpg' as string | null },
     { file: 'photo-04.jpg', orientation: 'portrait', caption: 'Même à distance, c’est près de toi que je m’endors.', src: '/images/couple/photo-04.jpg' as string | null },
     { file: 'photo-05.jpg', orientation: 'portrait', caption: 'Tu cherches les étoiles, alors que la plus belle, c’est toi.', src: '/images/couple/photo-05.jpg' as string | null },
-    { file: 'photo-06.jpg', orientation: 'portrait', caption: 'Un baiser sur ton front, une promesse pour la vie.', src: '/images/couple/photo-06.jpg' as string | null }
+    { file: 'photo-06.jpg', orientation: 'portrait', caption: 'Un baiser sur ton front, une promesse pour la vie.', src: '/images/couple/photo-06.jpg' as string | null },
+    // Photo spéciale : page mise en évidence à la fin de l’album
+    { file: 'photo-07.jpg', orientation: 'portrait', special: true, caption: 'De ce jour si tu te rappelles bien on a fait un pacte que je ne regretterais jamais d’avoir tenu ,tt a commencé ❤️♾️', src: '/images/couple/photo-07.jpg' as string | null }
   ],
 
   questions: [

@@ -337,7 +337,8 @@ export default class App extends React.Component<any, any> {
       const ph = C.photos[i - 1];
       const land = ph.orientation === 'paysage';
       return {
-        cls, z, isCover: false, isPhoto: true, bg: '#FFF8F2',
+        cls, z, isCover: false, isPhoto: !ph.special, isSpecial: !!ph.special,
+        bg: ph.special ? 'linear-gradient(160deg, #FFF8F2 0%, #FFE3F1 55%, #F1E4FF 100%)' : '#FFF8F2',
         hasSrc: !!ph.src, noSrc: !ph.src, src: ph.src || '', file: ph.file, caption: ph.caption,
         ratio: land ? '4 / 3' : '3 / 4', slotW: land ? '100%' : '78%',
         slotLabel: 'Photo ' + i + ' · ' + (land ? 'horizontale' : 'verticale'),
@@ -692,6 +693,18 @@ export default class App extends React.Component<any, any> {
                                 )}
                               </div>
                               <span style={st('font-size: 18px; font-weight: 500; line-height: 1.3; color: #2B1A3A; text-align: center')}>{lf.caption}</span>
+                              <span style={st('position: absolute; right: 18px; bottom: 12px; font-size: 12px; font-weight: 600; color: #B08AA0')}>{lf.pageNum}</span>
+                            </div>
+                          )}
+                          {lf.isSpecial && (
+                            <div className="special-page">
+                              <div className="special-frame" aria-hidden="true"></div>
+                              <div className="special-polaroid">
+                                <span className="special-tape" aria-hidden="true"></span>
+                                <img src={lf.src} alt="" draggable={false} />
+                                <svg className="special-heart bob" aria-hidden="true" width="30" height="28" viewBox="0 0 24 22"><path d="M12 21s-7.5-4.6-10-9.2C.4 8.6 2.2 4.4 6 4.1c2.3-.2 4.1 1.2 6 3.6 1.9-2.4 3.7-3.8 6-3.6 3.8.3 5.6 4.5 4 7.7C19.5 16.4 12 21 12 21z" fill="#FF4F9A"></path></svg>
+                              </div>
+                              <p className="special-text">{lf.caption}</p>
                               <span style={st('position: absolute; right: 18px; bottom: 12px; font-size: 12px; font-weight: 600; color: #B08AA0')}>{lf.pageNum}</span>
                             </div>
                           )}
