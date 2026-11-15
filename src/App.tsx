@@ -461,7 +461,7 @@ export default class App extends React.Component<any, any> {
     );
 
     return (
-      <div onPointerMove={v.onMove} style={st(`position: relative; width: 100%; height: 100%; min-height: 100vh; overflow: hidden; background: ${v.rootBg}; color: #FFFFFF; font-family: 'Rubik', system-ui, sans-serif`)}>
+      <div onPointerMove={v.onMove} style={st(`position: relative; width: 100%; height: 100%; min-height: 100vh; overflow: hidden; background: ${v.rootBg}; color: #FFFFFF; font-family: 'Montserrat', system-ui, sans-serif`)}>
         <div className={v.tvClass} style={st('position: absolute; inset: 0')}>
 
           {/* Fond vivant commun à toutes les scènes */}
@@ -672,7 +672,7 @@ export default class App extends React.Component<any, any> {
                             <div style={st('position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center')}>
                               <div style={st('position: absolute; inset: 14px; border: 2px solid rgba(255,194,223,.7); border-radius: 6px')}></div>
                               <span className="kicker" style={{ color: '#FFC2DF' }}>{v.coverNames}</span>
-                              <span style={st('font-weight: 800; font-size: 40px; line-height: 1.05; color: #FFE3F1; text-shadow: 0 2px 0 #C2316F, 0 4px 12px rgba(0,0,0,.4)')}>Notre album</span>
+                              <span className="title-font" style={st('font-weight: 800; font-size: 40px; line-height: 1.05; color: #FFE3F1; text-shadow: 0 2px 0 #C2316F, 0 4px 12px rgba(0,0,0,.4)')}>Notre album</span>
                               <span style={st('width: 54px; height: 3px; border-radius: 3px; background: #FF6FB5')}></span>
                               <span style={st('font-size: 14px; font-weight: 600; color: #E6F2FF')}>Touche pour tourner la page</span>
                             </div>
@@ -701,7 +701,7 @@ export default class App extends React.Component<any, any> {
                         </div>
                         <div className="face face-back">
                           <div style={st('position: absolute; inset: 0; display: flex; align-items: center; justify-content: center')}>
-                            <span style={st('font-weight: 800; font-size: 26px; letter-spacing: .1em; color: rgba(228,87,156,.3)')}>{v.initials}</span>
+                            <span className="title-font" style={st('font-weight: 800; font-size: 26px; letter-spacing: .1em; color: rgba(228,87,156,.3)')}>{v.initials}</span>
                           </div>
                           <div className="curl"></div>
                         </div>
@@ -795,7 +795,7 @@ export default class App extends React.Component<any, any> {
                 {v.declLines.map((dl: any, i: number) => (
                   <p key={i} className="reveal" style={st(`margin: 0; font-size: 20px; font-weight: 500; line-height: 1.55; color: #EAF4FF; white-space: pre-line; animation-delay: ${dl.delay}`)}>{dl.text}</p>
                 ))}
-                <p className="reveal" style={st(`margin: 4px 0 0; font-style: italic; font-weight: 700; font-size: 38px; color: #FF8CC6; animation-delay: ${v.declSignDelay}`)}>{v.signature}</p>
+                <p className="reveal title-font" style={st(`margin: 4px 0 0; font-style: italic; font-weight: 700; font-size: 38px; color: #FF8CC6; animation-delay: ${v.declSignDelay}`)}>{v.signature}</p>
                 <Orb className="reveal" style={{ marginTop: 6, animationDelay: v.declBtnDelay }} hb={v.h.forever} label="Pour toujours" hint="Maintiens"
                   icon={<svg aria-hidden="true" width="30" height="20" viewBox="0 0 30 20" fill="none" stroke="#FFFFFF" strokeWidth="2.6" strokeLinecap="round"><path d="M8 10c0-3 2-5 4.5-5S17 7 15 10s2.5 5 4.5 5S24 13 24 10s-2-5-4.5-5S15 7 15 10s-2.5 5-4.5 5S8 13 8 10z"></path></svg>} />
               </div>
@@ -805,7 +805,7 @@ export default class App extends React.Component<any, any> {
           {/* ═════ OUTRO ═════ */}
           {v.outroScreen && (
             <section className="crt" style={st('display: flex; align-items: center; justify-content: center; padding: 24px')}>
-              <p className="sig-in flicker" style={st('margin: 0; font-weight: 800; font-size: 42px; line-height: 1.12; color: #FFE3F1; text-align: center')}>{v.finalSignature}</p>
+              <p className="sig-in flicker title-font" style={st('margin: 0; font-weight: 800; font-size: 42px; line-height: 1.12; color: #FFE3F1; text-align: center')}>{v.finalSignature}</p>
               <div className="crt-lines" aria-hidden="true"></div>
               <div className="crt-vignette" aria-hidden="true"></div>
               {v.tvOff && <div className="tvflash" aria-hidden="true"></div>}

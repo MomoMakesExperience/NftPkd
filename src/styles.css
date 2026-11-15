@@ -4,7 +4,7 @@ html,body,#root{margin:0;height:100%}
 body{margin:0;background:#070B24}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 a{color:#FF8CC6}a:hover{color:#FFC2DF}
-button{font-family:'Rubik',system-ui,sans-serif;cursor:pointer}
+button{font-family:'Montserrat',system-ui,sans-serif;cursor:pointer}
 button:focus-visible{outline:2px solid #8CC8FF;outline-offset:4px}
 
 /* ── Fond : aurore vivante ── */
@@ -94,7 +94,7 @@ button:focus-visible{outline:2px solid #8CC8FF;outline-offset:4px}
 .s1 .seal-ring{display:none}
 .seal-half{position:absolute;inset:0;transition:transform .7s cubic-bezier(.3,.6,.3,1)}
 .seal-half svg{display:block;width:78px;height:78px}
-.seal-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:800;font-size:16px;letter-spacing:.06em;color:#F4A6C0;text-shadow:0 1px 0 #5E0624,0 -1px 0 rgba(255,255,255,.25);pointer-events:none}
+.seal-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;letter-spacing:.06em;color:#F4A6C0;text-shadow:0 1px 0 #5E0624,0 -1px 0 rgba(255,255,255,.25);pointer-events:none}
 .seal-l{clip-path:polygon(0 0,53% 0,45% 28%,57% 52%,47% 76%,52% 100%,0 100%)}
 .seal-r{clip-path:polygon(53% 0,100% 0,100% 100%,52% 100%,47% 76%,57% 52%,45% 28%)}
 .s1 .seal-l{transform:translate(-7px,4px) rotate(-9deg)}
@@ -231,3 +231,6 @@ button:focus-visible{outline:2px solid #8CC8FF;outline-offset:4px}
   @keyframes fadeOnly{from{opacity:0}to{opacity:1}}
   @keyframes fadeOut{to{opacity:0}}
 }
+
+/* Grands titres : police élégante */
+h1,h2,.title-font{font-family:'Playfair Display',Georgia,serif}
