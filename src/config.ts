@@ -96,7 +96,7 @@ export const CONFIG: any = {
   albumStyle: 'Album',
 
   // Musique : mets par exemple '/audio/musique.mp3' (fichier dans public/audio/)
-  musicUrl: null
+  musicUrl: '/audio/musique.mp3'
 };
 
 /* ════════════════════════════════════════════════════════════ */
