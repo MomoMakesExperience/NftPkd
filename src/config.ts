@@ -91,6 +91,10 @@ export const CONFIG: any = {
   // Concept de la scène 4 : 'Étoiles', 'Rose' ou 'Lanternes'
   universe: 'Étoiles',
 
+  // Présentation des photos (scène 5) : 'Album' (livre qui se feuillette) ou 'Polaroids' (pile de polaroids)
+  // Pour comparer sans rien changer ici : ajoute ?photos=polaroids ou ?photos=album à la fin du lien.
+  albumStyle: 'Album',
+
   // Musique : mets par exemple '/audio/musique.mp3' (fichier dans public/audio/)
   musicUrl: null
 };

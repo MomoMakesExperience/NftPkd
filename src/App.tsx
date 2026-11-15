@@ -252,7 +252,15 @@ export default class App extends React.Component<any, any> {
     const u = CONFIG.universe || 'Étoiles';
     this.sfx(u === 'Lanternes' ? 'whoosh' : u === 'Rose' ? 'flip' : 'chime');
   }
-  leafCount() { return CONFIG.photos.length + 1; }
+  polaroidMode() {
+    if (this.pMode === undefined) {
+      let style = String(CONFIG.albumStyle || 'Album');
+      try { const q = new URLSearchParams(window.location.search).get('photos'); if (q) style = q; } catch (e) {}
+      this.pMode = style.toLowerCase().indexOf('polaroid') === 0;
+    }
+    return this.pMode;
+  }
+  leafCount() { return CONFIG.photos.length + (this.polaroidMode() ? 0 : 1); }
   nextPage() {
     const t = this.state.turned;
     if (t >= this.leafCount()) return;
@@ -346,6 +354,22 @@ export default class App extends React.Component<any, any> {
       };
     });
 
+    // Polaroids : une pile de photos que l’on fait glisser une à une
+    const tilts = [-4, 3, -2, 5, -3, 2, -5, 4, -1, 3];
+    const pols = C.photos.map((ph, i) => {
+      const tossed = i < s.turned, depth = i - s.turned;
+      const t = tilts[i % tilts.length];
+      const tr = tossed
+        ? `translate(-50%, 0) translateX(-135%) rotate(${t - 22}deg)`
+        : `translate(-50%, 0) translateY(${Math.min(depth, 3) * 4}px) rotate(${depth === 0 ? t * 0.4 : t}deg)`;
+      return {
+        src: ph.src || '', hasSrc: !!ph.src, file: ph.file, caption: ph.caption, special: !!ph.special,
+        land: ph.orientation === 'paysage', z: tossed ? 200 + i : 100 - i,
+        style: { transform: tr, opacity: tossed || depth > 2 || (ph.special && depth > 0) ? 0 : 1, zIndex: tossed ? 200 + i : 100 - i },
+        slotLabel: 'Photo ' + (i + 1) + ' · ' + (ph.orientation === 'paysage' ? 'horizontale' : 'verticale')
+      };
+    });
+
     // Lettre : texte affiché jusqu’au caractère tapé
     const letterParas = [];
     C.letter.paragraphs.forEach((p, i) => {
@@ -403,9 +427,10 @@ export default class App extends React.Component<any, any> {
       activeTitle: s.active >= 0 ? U.item + ' n° ' + (s.active + 1) : '',
       activeMsg: s.active >= 0 ? C.reasons[s.active] : '',
 
+      pMode: this.polaroidMode(), pols, polEnd: s.turned >= C.photos.length,
       leaves, bookRX: (10 + tX * 0.6).toFixed(2), bookRY: (-6 + tY * 0.8).toFixed(2),
       atStart: s.turned <= 0, atEnd: s.turned >= N,
-      pageLabel: s.turned === 0 ? 'Couverture' : (s.turned >= N ? 'Fin' : 'Page ' + s.turned + ' / ' + C.photos.length),
+      pageLabel: this.polaroidMode() ? (s.turned >= N ? 'Fin' : 'Photo ' + (s.turned + 1) + ' / ' + C.photos.length) : (s.turned === 0 ? 'Couverture' : (s.turned >= N ? 'Fin' : 'Page ' + s.turned + ' / ' + C.photos.length)),
       nextPage: () => this.nextPage(), prevPage: () => this.prevPage(),
       bookDown: (e) => { if (e) { this.bx = e.clientX; this.by = e.clientY; } },
       bookUp: (e) => {
@@ -661,6 +686,28 @@ export default class App extends React.Component<any, any> {
             <section className="scene" style={st('background: rgba(18,24,90,.25); padding: 72px 20px 36px')}>
               <div style={st('max-width: 460px; min-height: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px')}>
                 <p className="reveal d1 kicker" style={{ margin: 0 }}>Scène 5 · Notre album</p>
+                {v.pMode ? (
+                <div className="reveal d2 pol-stack" onPointerDown={v.bookDown} onPointerUp={v.bookUp}>
+                  <p className="pol-end" style={{ opacity: v.polEnd ? 1 : 0 }}>La suite s’écrit ensemble…</p>
+                  {v.pols.map((pl: any, i: number) => (
+                    <div key={i} className={'pol' + (pl.special ? ' pol-special' : '')} style={pl.style}>
+                      {pl.special && <span className="special-tape" aria-hidden="true"></span>}
+                      {pl.hasSrc ? (
+                        <img src={pl.src} alt="" draggable={false} style={{ aspectRatio: pl.land ? '4 / 3' : '3 / 4' }} />
+                      ) : (
+                        <div className="slot" style={{ aspectRatio: pl.land ? '4 / 3' : '3 / 4' }}>
+                          <span style={st('font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #0E5FB8')}>{pl.slotLabel}</span>
+                          <span style={st('font-size: 11px; font-weight: 500; color: #3B6EA8')}>{pl.file}</span>
+                        </div>
+                      )}
+                      <p className="pol-caption">{pl.caption}</p>
+                      {pl.special && (
+                        <svg className="special-heart bob" aria-hidden="true" width="30" height="28" viewBox="0 0 24 22"><path d="M12 21s-7.5-4.6-10-9.2C.4 8.6 2.2 4.4 6 4.1c2.3-.2 4.1 1.2 6 3.6 1.9-2.4 3.7-3.8 6-3.6 3.8.3 5.6 4.5 4 7.7C19.5 16.4 12 21 12 21z" fill="#FF4F9A"></path></svg>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                ) : (
                 <div className="reveal d2 book-wrap">
                   <div className="book" style={st(`transform: rotateX(${v.bookRX}deg) rotateY(${v.bookRY}deg)`)} onPointerDown={v.bookDown} onPointerUp={v.bookUp}>
                     <div className="book-base" style={st('display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 30px; text-align: center')}>
@@ -722,12 +769,13 @@ export default class App extends React.Component<any, any> {
                     ))}
                   </div>
                 </div>
+                )}
                 <div style={st('display: flex; align-items: center; gap: 14px; margin-top: 10px')}>
                   <button className="chip" aria-label="Page précédente" onClick={v.prevPage} disabled={v.atStart}>‹ Avant</button>
                   <span style={st('min-width: 70px; text-align: center; font-size: 14px; font-weight: 700; color: #FFC2DF')}>{v.pageLabel}</span>
                   <button className="chip" aria-label="Page suivante" onClick={v.nextPage} disabled={v.atEnd}>Après ›</button>
                 </div>
-                <p style={st('margin: 0; font-size: 13px; font-weight: 500; color: #B9D9FF; text-align: center')}>Touche la page ou fais-la glisser pour la tourner</p>
+                <p style={st('margin: 0; font-size: 13px; font-weight: 500; color: #B9D9FF; text-align: center')}>{v.pMode ? 'Touche la photo ou fais-la glisser pour voir la suivante' : 'Touche la page ou fais-la glisser pour la tourner'}</p>
                 <Orb className="reveal d4" style={{ marginTop: 6 }} hb={v.h.invite} label="Une invitation pour toi" hint="Maintiens"
                   icon={<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 12v9H4v-9"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7c-2-4-6-4-6-1s6 1 6 1zM12 7c2-4 6-4 6-1s-6 1-6 1z"></path></svg>} />
               </div>
