@@ -1,0 +1,4 @@
+Place ici ta musique (exemple : musique.mp3).
+Dans src/config.ts, remplace  musicUrl: null  par  musicUrl: '/audio/musique.mp3'
+Sans fichier, une mélodie douce est générée automatiquement.
+Utilise uniquement une musique que tu as le droit d'utiliser.

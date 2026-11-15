@@ -1,0 +1,8 @@
+Place ici tes photos :
+photo-01.jpg (verticale), photo-02.jpg (horizontale), photo-03.jpg (verticale),
+photo-04.jpg (verticale), photo-05.jpg (horizontale), photo-06.jpg (verticale).
+
+Ensuite, dans src/config.ts, remplace pour chaque photo :
+  src: null
+par :
+  src: '/images/couple/photo-01.jpg'
