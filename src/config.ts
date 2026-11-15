@@ -40,12 +40,12 @@ export const CONFIG: any = {
   ],
 
   photos: [
-    { file: 'photo-01.jpg', orientation: 'portrait', caption: 'Légende de la photo 1', src: null as string | null },
-    { file: 'photo-02.jpg', orientation: 'paysage',  caption: 'Légende de la photo 2', src: null as string | null },
-    { file: 'photo-03.jpg', orientation: 'portrait', caption: 'Légende de la photo 3', src: null as string | null },
-    { file: 'photo-04.jpg', orientation: 'portrait', caption: 'Légende de la photo 4', src: null as string | null },
-    { file: 'photo-05.jpg', orientation: 'paysage',  caption: 'Légende de la photo 5', src: null as string | null },
-    { file: 'photo-06.jpg', orientation: 'portrait', caption: 'Légende de la photo 6', src: null as string | null }
+    { file: 'photo-01.jpg', orientation: 'portrait', caption: 'Même le soleil prend le temps de t’admirer.', src: '/images/couple/photo-01.jpg' as string | null },
+    { file: 'photo-02.jpg', orientation: 'portrait', caption: 'Ce regard-là, je pourrais m’y perdre pour toujours.', src: '/images/couple/photo-02.jpg' as string | null },
+    { file: 'photo-03.jpg', orientation: 'portrait', caption: 'Nos initiales écrites sur ta main… et gravées dans mon cœur.', src: '/images/couple/photo-03.jpg' as string | null },
+    { file: 'photo-04.jpg', orientation: 'portrait', caption: 'Même à distance, c’est près de toi que je m’endors.', src: '/images/couple/photo-04.jpg' as string | null },
+    { file: 'photo-05.jpg', orientation: 'portrait', caption: 'Tu cherches les étoiles, alors que la plus belle, c’est toi.', src: '/images/couple/photo-05.jpg' as string | null },
+    { file: 'photo-06.jpg', orientation: 'portrait', caption: 'Un baiser sur ton front, une promesse pour la vie.', src: '/images/couple/photo-06.jpg' as string | null }
   ],
 
   questions: [
